@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pronunciation Practice App
 
-## Getting Started
+A modern web application that helps users practice and improve their English pronunciation using AI technologies:
+- DeepSeek AI for generating practice words
+- ElevenLabs for generating reference pronunciations
+- AssemblyAI for grading pronunciation accuracy
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Generate challenging English words for practice
+- Listen to correct pronunciations
+- Record your pronunciation
+- Get instant feedback and scoring
+- Beautiful blue and white theme
+- Responsive design
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Prerequisites
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Before you begin, ensure you have:
+- Node.js 18+ installed
+- API keys for:
+  - AssemblyAI
+  - ElevenLabs
+  - DeepSeek
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Setup
 
-## Learn More
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. Create a `.env.local` file in the root directory with your API keys:
+   ```
+   ASSEMBLYAI_API_KEY=your_assemblyai_api_key
+   ELEVEN_LABS_API_KEY=your_elevenlabs_api_key
+   DEEPSEEK_API_KEY=your_deepseek_api_key
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Deploy on Vercel
+## Usage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Click "Generate New Word" to get a word to practice
+2. Click the speaker icon to hear the correct pronunciation
+3. Click the microphone icon to record your pronunciation
+4. Get instant feedback on your pronunciation accuracy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Technologies Used
+
+- Next.js 14
+- React 18
+- Tailwind CSS
+- AssemblyAI API
+- ElevenLabs API
+- DeepSeek API
+- TypeScript
+- Axios
+
+## License
+
+MIT
+# PronounciationPractice
