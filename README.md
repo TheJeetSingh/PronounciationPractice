@@ -63,6 +63,5 @@ npm run dev
 - TypeScript
 - Axios
 
-## License
-
-MIT
+##
+Azure was used for grading
