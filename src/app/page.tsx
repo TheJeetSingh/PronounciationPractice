@@ -305,6 +305,12 @@ export default function Home() {
   }), [isDarkMode, toggleTheme]);
 
   const generateNewWord = useCallback(async () => {
+    // Prevent generating a new word if the user hasn't attempted the current one
+    if (currentWord && score === null) {
+      alert('Please practice pronouncing the current word before generating a new one.');
+      return;
+    }
+
     setIsLoading(true);
     try {
       const response = await fetch('/api/generate-word', {
@@ -334,7 +340,7 @@ export default function Home() {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [currentWord, score]);
 
   const startRecording = useCallback(async () => {
     try {
@@ -436,7 +442,7 @@ export default function Home() {
       switch (event.key.toLowerCase()) {
         case ' ':
           event.preventDefault();
-          if (!isLoading && !isRecording) {
+          if (!isLoading && !isRecording && !(currentWord !== '' && score === null)) {
             generateNewWord();
           }
           break;
@@ -459,7 +465,7 @@ export default function Home() {
 
     window.addEventListener('keydown', handleKeyPress);
     return () => window.removeEventListener('keydown', handleKeyPress);
-  }, [generateNewWord, playReference, startRecording, stopRecording, isLoading, isPlaying, isRecording]);
+  }, [generateNewWord, playReference, startRecording, stopRecording, isLoading, isPlaying, isRecording, currentWord, score]);
 
   const buttonBaseClasses = useMemo(() => 
     "btn-primary flex items-center space-x-2 transform hover:scale-105 transition-all duration-200 relative overflow-hidden", 
@@ -510,8 +516,10 @@ export default function Home() {
                   <div className="flex flex-col items-center space-y-8 p-8">
                     <button
                       onClick={generateNewWord}
-                      className={`${buttonBaseClasses} w-full sm:w-auto`}
-                      disabled={isLoading}
+                      className={`${buttonBaseClasses} w-full sm:w-auto ${
+                        currentWord && score === null ? 'opacity-50 cursor-not-allowed' : ''
+                      }`}
+                      disabled={isLoading || (currentWord !== '' && score === null)}
                     >
                       {isLoading ? (
                         <ArrowPathIcon className="w-5 h-5 animate-spin" />
@@ -554,6 +562,13 @@ export default function Home() {
                             </button>
                           </div>
                         </div>
+
+                        {currentWord && score === null && (
+                          <div className="text-amber-400 flex items-center justify-center space-x-2 mt-4 animate-pulse">
+                            <XCircleIcon className="w-5 h-5" />
+                            <span>Please practice this word before continuing</span>
+                          </div>
+                        )}
 
                         {score !== null && (
                           <div className="mt-8 space-y-8 animate-fade-in">
