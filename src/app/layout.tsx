@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} bg-white min-h-screen`}>
         <main className="container mx-auto px-4 py-8">
-          {children}
+        {children}
         </main>
       </body>
     </html>

@@ -3,11 +3,16 @@ import axios from 'axios';
 
 const ELEVEN_LABS_API_KEY = process.env.ELEVEN_LABS_API_KEY;
 
+// Declare the global variable with proper typing
+declare global {
+  var lastGeneratedAudio: ArrayBuffer;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { text } = await request.json();
 
-    const response = await axios.post(
+    const response = await axios.post<ArrayBuffer>(
       'https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM',
       {
         text,
